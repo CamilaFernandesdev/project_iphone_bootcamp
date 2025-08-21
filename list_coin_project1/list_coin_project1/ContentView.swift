@@ -1,16 +1,24 @@
 //
 //  ContentView.swift
-//  list_coin_project1
+//  CryptoMarketApp
 //
 //  Created by Caio Zini on 22/10/23.
 //  Copyright © 2023 Camila Fernandes. All rights reserved.
-// projeto prático em VIP - project Santander BootCamp
+//
 
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject private var viewModel: CryptoListViewModel
+    
+    init() {
+        let diContainer = DIContainer.shared
+        self._viewModel = StateObject(wrappedValue: diContainer.makeCryptoListViewModel())
+    }
+    
     var body: some View {
-        Text("teste")
+        CryptoListView(viewModel: viewModel)
     }
 }
 
